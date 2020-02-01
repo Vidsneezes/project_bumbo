@@ -10,11 +10,11 @@ public class PlayerMove : MonoBehaviour
 
     public Vector3 velocity;
 
+    public GameObject mainCameraPolly;
 
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -32,5 +32,19 @@ public class PlayerMove : MonoBehaviour
     private void FixedUpdate()
     {
         characterController.Move(velocity * Time.fixedDeltaTime * moveSpeed);    
+    }
+
+    private void LateUpdate()
+    {
+        mainCameraPolly.transform.position = transform.position;
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("elevator"))
+        {
+            Debug.Log("load level");
+        }
     }
 }
