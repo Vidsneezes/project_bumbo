@@ -17,9 +17,6 @@ public class PlayerMove : MonoBehaviour
 
     public GameObject exclamationMark;
 
-    public GameObject dialogueUI;
-
-    public TextMeshProUGUI message;
     public GameObject rootObject;
     public Animator animator;
 
@@ -66,6 +63,7 @@ public class PlayerMove : MonoBehaviour
             Vector3 moveUp = elevatorUpProp.transform.position;
             moveUp.y += 4 * Time.deltaTime;
             elevatorUpProp.transform.position = moveUp;
+
             if(moveUp.y > flyawayLimit)
             {
                 Debug.Log("reached Level");
@@ -78,7 +76,9 @@ public class PlayerMove : MonoBehaviour
             return;
         }
 
-        bool talk = Input.GetKeyDown(KeyCode.Return);
+        bool talkButton = Input.GetKeyDown(KeyCode.Return);
+        bool wordTakeButton = Input.GetKeyDown(KeyCode.K);
+        bool useWordButton = Input.GetKeyDown(KeyCode.J);
         float moveHorizontal = Input.GetAxis("Horizontal");
         float foward = Input.GetAxis("Vertical");
 
@@ -107,28 +107,48 @@ public class PlayerMove : MonoBehaviour
                 exclamationMark.SetActive(false);
             }
 
-            if (talk && detectedObjects.Count > 0)
+            if (talkButton && detectedObjects.Count > 0)
             {
-                dialogueUI.gameObject.SetActive(true);
-                message.text = "Hello friend";
+                DialogueManager.instance.LoadDialogue(Blurbber.SimpleBlurb());
                 talking = true;
             }
         }
         else
         {
+            velocity.x = 0;
+            velocity.y = 0;
 
             animator.SetInteger("rolling", -1);
-            if (talk)
+            if (talkButton)
             {
-                talking = false;
-                dialogueUI.gameObject.SetActive(false);
-                message.text = "Hello friend";
+                if (DialogueManager.instance.AtEndOfBlurb())
+                {
+                    CloseDialogue();
+                }
+                else
+                {
+                    DialogueManager.instance.NextMessage();
+                }
+            }
+
+            if(wordTakeButton)
+            {
+                DialogueManager.instance.AddCurrentWord("Hello");
+                CloseDialogue();
+            }
+
+            if(DialogueManager.instance.hasCurrentWord && useWordButton)
+            {
+                DialogueManager.instance.UseWord();
             }
         }
 
+    }
 
-
-
+    void CloseDialogue()
+    {
+        DialogueManager.instance.CloseDialogue();
+        talking = false;
     }
 
     private void FixedUpdate()
