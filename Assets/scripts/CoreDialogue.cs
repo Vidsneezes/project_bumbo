@@ -97,6 +97,7 @@ public class CoreDialogue : MonoBehaviour
         return m;
     }
 
+
     public static Blurbber Pride_1()
     {
         Blurbber m = new Blurbber();

@@ -44,7 +44,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void AddCurrentWord(string word)
+    public void AddCurrentWord()
     {
         currentWord = currentBlurber.blurbs[currentBlurb - 1].specialWord;
         hasCurrentWord = true;

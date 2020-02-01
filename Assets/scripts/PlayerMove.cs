@@ -145,7 +145,9 @@ public class PlayerMove : MonoBehaviour
 
             if(wordTakeButton)
             {
-                DialogueManager.instance.AddCurrentWord("Hello");
+
+                DialogueManager.instance.AddCurrentWord();
+
                 currentNpc.HideCamera();
                 currentNpc = null;
                 CloseDialogue();
