@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class DialogueManager : MonoBehaviour
 {
+
+
+    //const string envy = string.Format("");
     // Start is called before the first frame update
     void Start()
     {

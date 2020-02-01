@@ -27,9 +27,13 @@ public class PlayerMove : MonoBehaviour
     public Camera awayCamera;
 
     const float flyawayLimit = 10.6f;
+    Vector3 fixedCamViewStart = new Vector3(12.3f, -89.8f, 0);
+    Vector3 fixedCamViewEnd = new Vector3(-41, -89.8f, 0);
+
 
     private bool talking;
     private bool flyingAway;
+    float timer = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +51,7 @@ public class PlayerMove : MonoBehaviour
 
         if(flyingAway)
         {
+            timer += Time.deltaTime * 0.89f;
             characterController.enabled = false;
 
             velocity.x = 0;
@@ -66,6 +71,10 @@ public class PlayerMove : MonoBehaviour
                 Debug.Log("reached Level");
             }
 
+            if (timer < 1)
+            {
+                awayCamera.transform.rotation = Quaternion.Euler(Vector3.Lerp(fixedCamViewStart, fixedCamViewEnd, timer));
+            }
             return;
         }
 
@@ -147,6 +156,7 @@ public class PlayerMove : MonoBehaviour
             Debug.Log("load level");
             flyingAway = true;
             awayCamera.depth = 1;
+            timer = 0;
         }
 
         if(!detectedObjects.Contains(other.gameObject) && other.CompareTag("event"))
