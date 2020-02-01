@@ -13,6 +13,7 @@ public class DialogueManager : MonoBehaviour
     public bool hasCurrentWord;
     public TextMeshProUGUI currentWordLabel;
 
+
     public GameObject dialogueUI;
     public TextMeshProUGUI message;
 
@@ -88,12 +89,12 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void UseWord()
+    public bool UseWord()
     {
         int lastBlurb = currentBlurb - 1;
         if(lastBlurb < 0)
         {
-            return;
+            return false;
         }
         if(currentBlurber.blurbs[lastBlurb].hasBranch)
         {
@@ -102,12 +103,14 @@ public class DialogueManager : MonoBehaviour
                 string secretBlurbId = currentBlurber.blurbs[lastBlurb].branchPath;
                 LoadDialogue(secretBlurbId);
                 RemoveCurrentWord();
+                return true;
             }
         }
         else
         {
             LoadDialogue("what");
         }
+        return false;
     }
 
     public void CloseDialogue()

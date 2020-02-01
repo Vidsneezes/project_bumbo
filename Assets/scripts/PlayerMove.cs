@@ -23,9 +23,17 @@ public class PlayerMove : MonoBehaviour
     public GameObject elevatorUpProp;
     public Camera awayCamera;
 
+    public MeshRenderer orbRenderer;
+
+    public MeshRenderer headRenderer;
+
+    public Npc headNpc;
+
     const float flyawayLimit = 10.6f;
-    Vector3 fixedCamViewStart = new Vector3(12.3f, -89.8f, 0);
-    Vector3 fixedCamViewEnd = new Vector3(-41, -89.8f, 0);
+    Vector3 fixedCamViewStart = new Vector3(12.3f, 5.64f, 0);
+    Vector3 fixedWalkAngle = new Vector3(0.7f, 0.7f, 0);
+
+    Vector3 fixedCamViewEnd = new Vector3(-41, 5.64f, 0);
 
     private Npc currentNpc;
 
@@ -155,7 +163,14 @@ public class PlayerMove : MonoBehaviour
 
             if(DialogueManager.instance.hasCurrentWord && useWordButton)
             {
-                DialogueManager.instance.UseWord();
+                if (DialogueManager.instance.UseWord())
+                {
+                    if (currentNpc == headNpc)
+                    {
+                        headNpc.gameObject.SetActive(false);
+                        GetHead();
+                    }
+                }
             }
         }
 
@@ -165,6 +180,12 @@ public class PlayerMove : MonoBehaviour
     {
         DialogueManager.instance.CloseDialogue();
         talking = false;
+    }
+
+    public void GetHead()
+    {
+        orbRenderer.enabled = false;
+        headRenderer.gameObject.SetActive(true);
     }
 
     private void FixedUpdate()
