@@ -90,6 +90,7 @@ public class DialogueManager : MonoBehaviour
             if(currentWord == currentBlurber.blurbs[lastBlurb].specialWord)
             {
                 LoadDialogue(Blurbber.SecretBlurb());
+                RemoveCurrentWord();
             }
         }
         else

@@ -2618,6 +2618,9 @@ MonoBehaviour:
   currentWordLabel: {fileID: 1495040939}
   dialogueUI: {fileID: 1034246984}
   message: {fileID: 33691347}
+  currentBlurb: 0
+  currentBlurber:
+    blurbs: []
 --- !u!1 &1605925175
 GameObject:
   m_ObjectHideFlags: 0
@@ -2628,7 +2631,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1605925176}
   m_Layer: 0
-  m_Name: '###SCENERY'
+  m_Name: '###Floor_1'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3350,4 +3353,34 @@ Transform:
   - {fileID: 1883949522}
   m_Father: {fileID: 0}
   m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2111411457
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2111411458}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2111411458
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111411457}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -25.93327, y: 0.30766678, z: 2.787754}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
