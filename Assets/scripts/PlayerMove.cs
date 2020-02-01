@@ -27,6 +27,7 @@ public class PlayerMove : MonoBehaviour
     Vector3 fixedCamViewStart = new Vector3(12.3f, -89.8f, 0);
     Vector3 fixedCamViewEnd = new Vector3(-41, -89.8f, 0);
 
+    private Npc currentNpc;
 
     private bool talking;
     private bool flyingAway;
@@ -113,6 +114,9 @@ public class PlayerMove : MonoBehaviour
                 Npc npc = detectedObjects[0].GetComponent<Npc>();
                 if(npc != null)
                 {
+                    exclamationMark.SetActive(false);
+                    currentNpc = npc;
+                    currentNpc.ShowCamera();
                     DialogueManager.instance.LoadDialogue(npc.GetId());
                     talking = true;
                 }
@@ -129,6 +133,8 @@ public class PlayerMove : MonoBehaviour
             {
                 if (DialogueManager.instance.AtEndOfBlurb())
                 {
+                    currentNpc.HideCamera();
+                    currentNpc = null;
                     CloseDialogue();
                 }
                 else
@@ -140,6 +146,8 @@ public class PlayerMove : MonoBehaviour
             if(wordTakeButton)
             {
                 DialogueManager.instance.AddCurrentWord("Hello");
+                currentNpc.HideCamera();
+                currentNpc = null;
                 CloseDialogue();
             }
 

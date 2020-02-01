@@ -78,7 +78,7 @@ public class DialogueManager : MonoBehaviour
         if (currentBlurber.blurbs[currentBlurb].isStateChanger)
         {
             CoreDialogue.instance.allNpcs[currentBlurber.blurbs[currentBlurb].message] = currentBlurber.blurbs[currentBlurb].setNewState;
-            message.text = "The world is shifting";
+            message.text = "<i>The world is shifting</i>";
             currentBlurb += 1;
         }
         else
