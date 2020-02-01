@@ -107,7 +107,7 @@ public class CoreDialogue : MonoBehaviour
         m.blurbs.Add(TextBoxBlurb.AddSimple("Who do you think keeps this place from falling apart?"));
         m.blurbs.Add(TextBoxBlurb.AddSimple("It is I and no one else. "));
 
-        m.blurbs.Add(TextBoxBlurb.AddBranchBlurb("Ancilla, <color=blue>the great</color>, if you will. ", "none", "pride_2"));
+        //m.blurbs.Add(TextBoxBlurb.AddBranchBlurb("Ancilla, <color=blue>the great</color>, if you will. ", "none", "pride_2"));
 
         return m;
     }
