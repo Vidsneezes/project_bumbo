@@ -52,7 +52,7 @@ public class PlayerMove : MonoBehaviour
             characterController.enabled = false;
 
             velocity.x = 0;
-            velocity.y = 0;
+            velocity.z = 0;
             if(transform.parent == null)
             {
                 transform.SetParent(elevatorUpProp.transform);
@@ -109,14 +109,20 @@ public class PlayerMove : MonoBehaviour
 
             if (talkButton && detectedObjects.Count > 0)
             {
-                DialogueManager.instance.LoadDialogue(Blurbber.SimpleBlurb());
-                talking = true;
+
+                Npc npc = detectedObjects[0].GetComponent<Npc>();
+                if(npc != null)
+                {
+                    DialogueManager.instance.LoadDialogue(npc.GetId());
+                    talking = true;
+                }
+
             }
         }
         else
         {
             velocity.x = 0;
-            velocity.y = 0;
+            velocity.z = 0;
 
             animator.SetInteger("rolling", -1);
             if (talkButton)
@@ -153,10 +159,7 @@ public class PlayerMove : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!flyingAway)
-        {
-            characterController.Move(velocity * Time.fixedDeltaTime * moveSpeed);
-        }
+        characterController.Move(velocity * Time.fixedDeltaTime * moveSpeed);
     }
 
     private void LateUpdate()

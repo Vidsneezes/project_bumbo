@@ -63,23 +63,33 @@ public class DialogueManager : MonoBehaviour
         return currentBlurb >= currentBlurber.blurbs.Count;
     }
 
-    public void LoadDialogue(Blurbber blurber)
+    public void LoadDialogue(string id)
     {
+        Debug.Log(id);
         currentBlurb = 0;
-        currentBlurber = blurber;
+        currentBlurber = CoreDialogue.instance.allBlurbs[id];
         dialogueUI.gameObject.SetActive(true);
         NextMessage();
     }
 
     public void NextMessage()
     {
-        message.text = currentBlurber.blurbs[currentBlurb].message;
-        currentBlurb += 1;
+
+        if (currentBlurber.blurbs[currentBlurb].isStateChanger)
+        {
+            CoreDialogue.instance.allNpcs[currentBlurber.blurbs[currentBlurb].message] = currentBlurber.blurbs[currentBlurb].setNewState;
+            message.text = "The world is shifting";
+            currentBlurb += 1;
+        }
+        else
+        {
+            message.text = currentBlurber.blurbs[currentBlurb].message;
+            currentBlurb += 1;
+        }
     }
 
     public void UseWord()
     {
-        Debug.Log(currentBlurb);
         int lastBlurb = currentBlurb - 1;
         if(lastBlurb < 0)
         {
@@ -89,14 +99,14 @@ public class DialogueManager : MonoBehaviour
         {
             if(currentWord == currentBlurber.blurbs[lastBlurb].specialWord)
             {
-                LoadDialogue(Blurbber.SecretBlurb());
+                string secretBlurbId = currentBlurber.blurbs[lastBlurb].branchPath;
+                LoadDialogue(secretBlurbId);
                 RemoveCurrentWord();
             }
         }
         else
         {
-            LoadDialogue(Blurbber.BadEndBlurb());
-
+            LoadDialogue("what");
         }
     }
 
@@ -110,39 +120,6 @@ public class DialogueManager : MonoBehaviour
 public class Blurbber
 {
     public List<TextBoxBlurb> blurbs;
-
-    public static Blurbber SimpleBlurb()
-    {
-        Blurbber m = new Blurbber();
-        m.blurbs = new List<TextBoxBlurb>();
-
-        m.blurbs.Add(TextBoxBlurb.AddSpecialBlurb("<color=yellow>Hello</color> There!", "Hello"));
-        m.blurbs.Add(TextBoxBlurb.AddBranchBlurb("<color=blue>So lonely</color> sigh", "Hello"));
-
-        return m;
-    }
-
-    public static Blurbber SecretBlurb()
-    {
-
-        Blurbber m = new Blurbber();
-        m.blurbs = new List<TextBoxBlurb>();
-
-        m.blurbs.Add(TextBoxBlurb.AddSimple("Yes yes friend hello! take my head"));
-
-        return m;
-    }
-
-
-    public static Blurbber BadEndBlurb()
-    {
-        Blurbber m = new Blurbber();
-        m.blurbs = new List<TextBoxBlurb>();
-
-        m.blurbs.Add(TextBoxBlurb.AddSimple("What was that?"));
-
-        return m;
-    }
 }
 
 [System.Serializable]
@@ -155,6 +132,9 @@ public class TextBoxBlurb
 
     public bool hasBranch;
     public string branchPath;
+
+    public bool isStateChanger;
+    public int setNewState;
 
     public static TextBoxBlurb AddSimple(string _message)
     {
@@ -180,7 +160,7 @@ public class TextBoxBlurb
         return mm;
     }
 
-    public static TextBoxBlurb AddBranchBlurb(string _message, string _specialWord)
+    public static TextBoxBlurb AddBranchBlurb(string _message, string _specialWord, string _branchPath)
     {
         TextBoxBlurb mm = new TextBoxBlurb();
 
@@ -188,7 +168,21 @@ public class TextBoxBlurb
         mm.hasSpecialWord = false;
         mm.specialWord = _specialWord;
         mm.hasBranch = true;
+        mm.branchPath = _branchPath;
+        return mm;
+    }
+
+    public static TextBoxBlurb ChangeNpcId(string id, int _newState)
+    {
+        TextBoxBlurb mm = new TextBoxBlurb();
+
+        mm.message = id;
+        mm.hasSpecialWord = false;
+        mm.specialWord = "";
+        mm.hasBranch = false;
         mm.branchPath = "";
+        mm.setNewState = _newState;
+        mm.isStateChanger = true;
         return mm;
     }
 }
