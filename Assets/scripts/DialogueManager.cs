@@ -79,9 +79,15 @@ public class DialogueManager : MonoBehaviour
 
     public void UseWord()
     {
-        if(currentBlurber.blurbs[currentBlurb].hasBranch)
+        Debug.Log(currentBlurb);
+        int lastBlurb = currentBlurb - 1;
+        if(lastBlurb < 0)
         {
-            if(currentWord == currentBlurber.blurbs[currentBlurb].specialWord)
+            return;
+        }
+        if(currentBlurber.blurbs[lastBlurb].hasBranch)
+        {
+            if(currentWord == currentBlurber.blurbs[lastBlurb].specialWord)
             {
                 LoadDialogue(Blurbber.SecretBlurb());
             }
