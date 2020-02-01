@@ -47,6 +47,8 @@ public class PlayerMove : MonoBehaviour
 
         if(flyingAway)
         {
+            characterController.enabled = false;
+
             velocity.x = 0;
             velocity.y = 0;
             if(transform.parent == null)
@@ -124,7 +126,6 @@ public class PlayerMove : MonoBehaviour
     {
         if (!flyingAway)
         {
-            characterController.enabled = false;
             characterController.Move(velocity * Time.fixedDeltaTime * moveSpeed);
         }
     }
