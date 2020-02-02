@@ -31,6 +31,8 @@ public class PlayerMove : MonoBehaviour
     public MeshRenderer headRenderer;
 
     public Npc headNpc;
+    public Npc wrathNpc;
+    public Npc slothNpc;
 
     const float flyawayLimit = 10.6f;
     Vector3 fixedCamViewStart = new Vector3(12.3f, 5.64f, 0);
