@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class DialogueManager : MonoBehaviour
 
     public bool hasCurrentWord;
     public TextMeshProUGUI currentWordLabel;
+    public Image textBox;
 
 
     public GameObject dialogueUI;

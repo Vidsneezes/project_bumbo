@@ -7,6 +7,7 @@ public class Npc : MonoBehaviour
     public string npc_name;
 
     public Camera viewCamera;
+    public Sprite textBox;
 
     public List<string> intialId;
 

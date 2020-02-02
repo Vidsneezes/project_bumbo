@@ -153,6 +153,7 @@ public class PlayerMove : MonoBehaviour
                     exclamationMark.SetActive(false);
                     currentNpc = npc;
                     currentNpc.ShowCamera();
+                    DialogueManager.instance.textBox.sprite = npc.textBox;
                     DialogueManager.instance.LoadDialogue(npc.GetId());
                     talking = true;
                 }
