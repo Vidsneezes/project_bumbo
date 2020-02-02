@@ -22,6 +22,12 @@ public class PlayerMove : MonoBehaviour
     public GameObject rootObject;
     public Animator animator;
 
+    public AudioSource gameMusic_1;
+    public AudioSource gameMusic_2;
+    public AudioSource gameMusic_3;
+
+
+
     public GameObject elevatorUpProp;
     public Camera awayCamera;
 
@@ -99,6 +105,7 @@ public class PlayerMove : MonoBehaviour
         openDoor_1 = false;
 
         currentWalkAnimation = "rolling";
+
     }
 
     // Update is called once per frame
@@ -120,7 +127,7 @@ public class PlayerMove : MonoBehaviour
             {
                 transform.SetParent(elevatorUpProp.transform);
             }
-            transform.localPosition = Vector3.up * 0.5f;
+            transform.localPosition = Vector3.up * -0.5f;
             animator.SetInteger(currentWalkAnimation, -1);
 
             Vector3 moveUp = elevatorUpProp.transform.position;
@@ -258,6 +265,7 @@ public class PlayerMove : MonoBehaviour
         prideArm_1.gameObject.SetActive(false);
         prideArm_2.gameObject.SetActive(false);
         hasArms = true;
+
     }
 
     [ContextMenu("Get Legs")]
@@ -271,12 +279,14 @@ public class PlayerMove : MonoBehaviour
         slothLeg_1.gameObject.SetActive(false);
         slothLeg_2.gameObject.SetActive(false);
         hasLegs = true;
+      
     }
 
     public void GetHead()
     {
         orbRenderer.enabled = false;
         headRenderer.gameObject.SetActive(true);
+        gameMusic_1.Play();
     }
 
     private void FixedUpdate()
@@ -303,6 +313,10 @@ public class PlayerMove : MonoBehaviour
             awayCamera.depth = 1;
             timer = 0;
             finalImage.gameObject.SetActive(true);
+
+            gameMusic_1.Stop();
+            gameMusic_2.Stop();
+            gameMusic_3.Play();
         }
 
         if(!detectedObjects.Contains(other.gameObject) && other.CompareTag("event"))
@@ -316,6 +330,9 @@ public class PlayerMove : MonoBehaviour
             lockedDoor_1.gameObject.SetActive(false);
 
             MoveSwitch(lockedDoorCam_1, lever_1);
+
+            gameMusic_2.Play();
+            gameMusic_1.Stop();
         }
 
         if (other.CompareTag("lockeddoor_2") && hasLegs && openDoor_2 == false)
