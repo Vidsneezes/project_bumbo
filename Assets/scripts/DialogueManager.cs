@@ -105,6 +105,13 @@ public class DialogueManager : MonoBehaviour
                 RemoveCurrentWord();
                 return true;
             }
+            else
+            {
+                string secretBlurbId = currentBlurber.blurbs[lastBlurb].losingBranch;
+                LoadDialogue(secretBlurbId);
+                RemoveCurrentWord();
+                return false;
+            }
         }
         else
         {
@@ -136,6 +143,8 @@ public class TextBoxBlurb
     public bool hasBranch;
     public string branchPath;
 
+    public string losingBranch;
+
     public bool isStateChanger;
     public int setNewState;
 
@@ -163,7 +172,7 @@ public class TextBoxBlurb
         return mm;
     }
 
-    public static TextBoxBlurb AddBranchBlurb(string _message, string _specialWord, string _branchPath)
+    public static TextBoxBlurb AddBranchBlurb(string _message, string _specialWord, string _branchPath, string losingBranch = "what")
     {
         TextBoxBlurb mm = new TextBoxBlurb();
 
@@ -172,6 +181,7 @@ public class TextBoxBlurb
         mm.specialWord = _specialWord;
         mm.hasBranch = true;
         mm.branchPath = _branchPath;
+        mm.losingBranch = losingBranch;
         return mm;
     }
 

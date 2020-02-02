@@ -22,6 +22,8 @@ public class CoreDialogue : MonoBehaviour
         allNpcs = new Dictionary<string, int>();
         allNpcs.Add("head_1", 0);
         allNpcs.Add("pride_1", 0);
+        allNpcs.Add("envy_1", 0);
+
 
 
     }
@@ -46,6 +48,12 @@ public class CoreDialogue : MonoBehaviour
         _b.Add("head_2", Head_2());
         _b.Add("head_done", Head_done());
         _b.Add("pride_1", Pride_1());
+        _b.Add("pride_2", Pride_2());
+        _b.Add("pride_3", Pride_3());
+
+        _b.Add("envy_1", Envy_1());
+        _b.Add("envy_2", Envy_2());
+
 
         return _b;
     }
@@ -72,9 +80,10 @@ public class CoreDialogue : MonoBehaviour
         m.blurbs = new List<TextBoxBlurb>();
 
         m.blurbs.Add(TextBoxBlurb.AddSimple("Well, hello there!"));
-        m.blurbs.Add(TextBoxBlurb.AddSimple("I'm impressed you can move. In here, nobody has the will to move anymore."));
-        m.blurbs.Add(TextBoxBlurb.AddSimple("I once wished to see heaven, but that was a long time ago."));
-        m.blurbs.Add(TextBoxBlurb.AddBranchBlurb("I now wish somebody could<color=blue>show me</color>.", "I will", "head_2", "head_2"));
+        m.blurbs.Add(TextBoxBlurb.AddSimple("I'm impressed you can move."));
+        m.blurbs.Add(TextBoxBlurb.AddSimple("In here, nobody has the will to move anymore."));
+        m.blurbs.Add(TextBoxBlurb.AddSimple("I once wished to see heaven, a long time ago."));
+        m.blurbs.Add(TextBoxBlurb.AddBranchBlurb("I now wish somebody could <color=blue>show me</color>.", "I will", "head_2", "head_2"));
         m.blurbs.Add(TextBoxBlurb.AddSpecialBlurb("I guess, <color=yellow>I will</color> just stay here until the end of time.", "I will"));
         return m;
     }
@@ -287,7 +296,7 @@ public class CoreDialogue : MonoBehaviour
         m.blurbs.Add(TextBoxBlurb.AddSimple("Fair you say?"));
         m.blurbs.Add(TextBoxBlurb.AddSimple("Le me tell ya what is fair."));
         m.blurbs.Add(TextBoxBlurb.AddSimple("Ya work hard, ya get stuff."));
-        m.blurbs.Add(TextBoxBlurb.AddSpecialBlurb("I did it before, so <color=yellow>you can</color> do it too."), "you can");
+        m.blurbs.Add(TextBoxBlurb.AddSpecialBlurb("I did it before, so <color=yellow>you can</color> do it too.", "you can"));
         return m;
     }
 
