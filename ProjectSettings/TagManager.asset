@@ -8,6 +8,7 @@ TagManager:
   - event
   - elevatorUpProp
   - awaycam
+  - lockeddoor_1
   layers:
   - Default
   - TransparentFX

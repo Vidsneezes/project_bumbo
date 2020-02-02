@@ -31,17 +31,26 @@ public class PlayerMove : MonoBehaviour
     public MeshRenderer headRenderer;
 
     public Npc headNpc;
-    public Npc wrathNpc;
+    public Npc prideNpc;
     public Npc slothNpc;
 
-    public GameObject wrathArm_1;
-    public GameObject wrathArm_2;
+    public GameObject prideArm_1;
+    public GameObject prideArm_2;
+
+    public GameObject slothLeg_1;
+    public GameObject slothLeg_2;
+
+    public GameObject lockedDoor_1;
 
     const float flyawayLimit = 10.6f;
     Vector3 fixedCamViewStart = new Vector3(12.3f, 5.64f, 0);
     Vector3 fixedWalkAngle = new Vector3(0.7f, 0.7f, 0);
 
     Vector3 fixedCamViewEnd = new Vector3(-41, 5.64f, 0);
+
+    private bool hasArms;
+    private bool hasLegs;
+    private bool openDoor_1;
 
     private Npc currentNpc;
 
@@ -57,6 +66,11 @@ public class PlayerMove : MonoBehaviour
         exclamationMark.SetActive(false);
         elevatorUpProp = GameObject.FindGameObjectWithTag("elevatorUpProp");
         awayCamera = GameObject.FindGameObjectWithTag("awaycam").GetComponent<Camera>();
+
+        hasArms = false;
+        hasLegs = false;
+
+        openDoor_1 = false;
     }
 
     // Update is called once per frame
@@ -179,6 +193,12 @@ public class PlayerMove : MonoBehaviour
                     {
                         headNpc.gameObject.SetActive(false);
                         GetHead();
+                    }else if(currentNpc == prideNpc)
+                    {
+                        GetArms();
+                    }else if(currentNpc == slothNpc)
+                    {
+                        GetLegs();
                     }
                 }
             }
@@ -193,6 +213,20 @@ public class PlayerMove : MonoBehaviour
         talking = false;
         exclamationMark.SetActive(false);
         detectedObjects.Clear();
+    }
+
+    public void GetArms()
+    {
+        prideArm_1.gameObject.SetActive(false);
+        prideArm_2.gameObject.SetActive(false);
+        hasArms = true;
+    }
+
+    public void GetLegs()
+    {
+        slothLeg_1.gameObject.SetActive(false);
+        slothLeg_2.gameObject.SetActive(false);
+        hasLegs = true;
     }
 
     public void GetHead()
@@ -229,6 +263,12 @@ public class PlayerMove : MonoBehaviour
         if(!detectedObjects.Contains(other.gameObject) && other.CompareTag("event"))
         {
             detectedObjects.Add(other.gameObject);
+        }
+
+        if(other.CompareTag("lockeddoor_1") && hasArms && openDoor_1 == false)
+        {
+            openDoor_1 = true;
+            lockedDoor_1.gameObject.SetActive(false);
         }
 
     }
