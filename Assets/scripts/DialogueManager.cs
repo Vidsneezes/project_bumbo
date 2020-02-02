@@ -65,7 +65,7 @@ public class DialogueManager : MonoBehaviour
     {
         currentWord = "";
         hasCurrentWord = false;
-        currentWordLabel.text = "--none--";
+        currentWordLabel.text = "";
     }
 
     public bool AtEndOfBlurb()
@@ -84,7 +84,6 @@ public class DialogueManager : MonoBehaviour
 
     public void NextMessage()
     {
-
         if(currentBlurber.blurbs[currentBlurb].hasSpecialWord)
         {
             blubbleBox.sprite = canTake;
@@ -145,6 +144,12 @@ public class DialogueManager : MonoBehaviour
 
     public void CloseDialogue()
     {
+
+        if(hasCurrentWord)
+        {
+            blubbleBox.sprite = idleuse;
+        }
+
         dialogueUI.gameObject.SetActive(false);
     }
 }
