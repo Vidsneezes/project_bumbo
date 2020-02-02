@@ -238,9 +238,11 @@ public class CoreDialogue : MonoBehaviour
         Blurbber m = new Blurbber();
         m.blurbs = new List<TextBoxBlurb>();
         m.blurbs.Add(TextBoxBlurb.AddSimple("I hate them! I hate them so much!"));
-        m.blurbs.Add(TextBoxBlurb.AddSimple("The other day I was minding my own business when I heard that scrap pile talking trash about me."));
+        m.blurbs.Add(TextBoxBlurb.AddSimple("The other day I was minding my own business..."));
+        m.blurbs.Add(TextBoxBlurb.AddSimple("when I heard that scrap pile talking trash about me."));
         m.blurbs.Add(TextBoxBlurb.AddSimple("I wish he minded his own business. As I do."));
-        m.blurbs.Add(TextBoxBlurb.AddSimple("I hate the way he floats around. Just because you can float, it doesn't mean you can cut the line!"));
+        m.blurbs.Add(TextBoxBlurb.AddSimple("I hate the way he floats around."));
+        m.blurbs.Add(TextBoxBlurb.AddSimple("Just because you can float, it doesn't mean you can cut the line!"));
         m.blurbs.Add(TextBoxBlurb.AddSimple("I hate how he talks in rhymes. Just get to the point!"));
         m.blurbs.Add(TextBoxBlurb.AddSimple("And don't get me started on the old man."));
         m.blurbs.Add(TextBoxBlurb.AddSimple("I hate how he carries that rock around. It makes the floor dirty!"));
@@ -335,10 +337,10 @@ public class CoreDialogue : MonoBehaviour
     {
         Blurbber m = new Blurbber();
         m.blurbs = new List<TextBoxBlurb>();
-        m.blurbs.Add(TextBoxBlurb.AddSimple("Blarg blar blaggg blaaa"));
-        m.blurbs.Add(TextBoxBlurb.AddBranchBlurb("Blaaa <color=blue>rlaggg</color> ghhh", "gluttony_2", "gluttony_2"));
-        m.blurbs.Add(TextBoxBlurb.AddSimple("Blarg Bla"));
-        m.blurbs.Add(TextBoxBlurb.AddSimple("Foood"));
+        m.blurbs.Add(TextBoxBlurb.AddSimple("-.-- .--.-- --.-- .--"));
+        m.blurbs.Add(TextBoxBlurb.AddBranchBlurb("-.-- <color=blue>-.--</color> ---...", "gluttony_2", "gluttony_2"));
+        m.blurbs.Add(TextBoxBlurb.AddSimple("..ood"));
+        m.blurbs.Add(TextBoxBlurb.AddSimple("-.-- Foood"));
         m.blurbs.Add(TextBoxBlurb.AddSimple("Food Food Food"));
         m.blurbs.Add(TextBoxBlurb.AddSimple("Eat eat eat"));
         m.blurbs.Add(TextBoxBlurb.AddBranchBlurb("<color=blue>Noooooooooow</color>", "take it easy", "gluttony_3", "gluttony_2"));
@@ -372,7 +374,7 @@ public class CoreDialogue : MonoBehaviour
     {
         Blurbber m = new Blurbber();
         m.blurbs = new List<TextBoxBlurb>();
-        m.blurbs.Add(TextBoxBlurb.AddBranchBlurb("<color=blue>Welcome to my lair</color>", "talk", "lust_3", "lust_2"));
+        m.blurbs.Add(TextBoxBlurb.AddBranchBlurb("Hello, sit back and lets have a <color=blue>chat</color>.", "talk", "lust_3", "lust_2"));
         return m;
     }
 
