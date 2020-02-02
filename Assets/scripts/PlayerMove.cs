@@ -41,6 +41,8 @@ public class PlayerMove : MonoBehaviour
     public GameObject slothLeg_2;
 
     public GameObject lockedDoor_1;
+    public GameObject lockedDoor_2;
+
 
     const float flyawayLimit = 10.6f;
     Vector3 fixedCamViewStart = new Vector3(12.3f, 5.64f, 0);
@@ -51,6 +53,8 @@ public class PlayerMove : MonoBehaviour
     public bool hasArms;
     public bool hasLegs;
     public bool openDoor_1;
+    public bool openDoor_2;
+
 
     private Npc currentNpc;
 
@@ -269,6 +273,12 @@ public class PlayerMove : MonoBehaviour
         {
             openDoor_1 = true;
             lockedDoor_1.gameObject.SetActive(false);
+        }
+
+        if(other.CompareTag("lockeddoor_2") && hasLegs && openDoor_2 == false)
+        {
+            openDoor_2 = true;
+            lockedDoor_2.gameObject.SetActive(false);
         }
 
     }
