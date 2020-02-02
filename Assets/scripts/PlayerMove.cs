@@ -55,6 +55,14 @@ public class PlayerMove : MonoBehaviour
     public bool openDoor_1;
     public bool openDoor_2;
 
+    public bool inCutScene;
+
+    public Camera lockedDoorCam_1;
+    public Animator lever_1;
+
+
+    public Camera lockedDoorCam_2;
+    public Animator lever_2;
 
     private Npc currentNpc;
 
@@ -80,6 +88,10 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(inCutScene)
+        {
+            return;
+        }
 
 
         if(flyingAway)
@@ -274,12 +286,16 @@ public class PlayerMove : MonoBehaviour
         {
             openDoor_1 = true;
             lockedDoor_1.gameObject.SetActive(false);
+
+            MoveSwitch(lockedDoorCam_1, lever_1);
         }
 
-        if(other.CompareTag("lockeddoor_2") && hasLegs && openDoor_2 == false)
+        if (other.CompareTag("lockeddoor_2") && hasLegs && openDoor_2 == false)
         {
             openDoor_2 = true;
             lockedDoor_2.gameObject.SetActive(false);
+
+            MoveSwitch(lockedDoorCam_2, lever_2);
         }
 
     }
@@ -298,6 +314,22 @@ public class PlayerMove : MonoBehaviour
         {
             detectedObjects.Remove(other.gameObject);
         }
+    }
+
+    public void MoveSwitch(Camera _cam, Animator _anim)
+    {
+        StartCoroutine(MoveSwitchRoutine(_cam, _anim));
+    }
+
+    IEnumerator MoveSwitchRoutine(Camera _cam, Animator _anim)
+    {
+        inCutScene = true;
+        _cam.gameObject.SetActive(true);
+        _anim.SetBool("down", true);
+        yield return new WaitForSeconds(2f);
+        _cam.gameObject.SetActive(false);
+
+        inCutScene = false;
     }
   
 }
