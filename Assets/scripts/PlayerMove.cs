@@ -34,6 +34,9 @@ public class PlayerMove : MonoBehaviour
     public Npc wrathNpc;
     public Npc slothNpc;
 
+    public GameObject wrathArm_1;
+    public GameObject wrathArm_2;
+
     const float flyawayLimit = 10.6f;
     Vector3 fixedCamViewStart = new Vector3(12.3f, 5.64f, 0);
     Vector3 fixedWalkAngle = new Vector3(0.7f, 0.7f, 0);
