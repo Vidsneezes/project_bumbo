@@ -48,9 +48,9 @@ public class PlayerMove : MonoBehaviour
 
     Vector3 fixedCamViewEnd = new Vector3(-41, 5.64f, 0);
 
-    private bool hasArms;
-    private bool hasLegs;
-    private bool openDoor_1;
+    public bool hasArms;
+    public bool hasLegs;
+    public bool openDoor_1;
 
     private Npc currentNpc;
 

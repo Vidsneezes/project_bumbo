@@ -42,6 +42,10 @@ public class CoreDialogue : MonoBehaviour
     public Dictionary<string, Blurbber> allBlurbs;
     public Dictionary<string, int> allNpcs;
 
+    public const string yellow = "#FFFF00";
+    public const string blue = "#0015FF";
+
+
     public static Dictionary<string,Blurbber> GetAllBlurbs()
     {
         Dictionary<string, Blurbber> _b = new Dictionary<string, Blurbber>();

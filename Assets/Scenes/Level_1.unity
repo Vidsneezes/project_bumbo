@@ -8317,7 +8317,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1552856551}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.4, y: 0.5, z: 50.4}
+  m_LocalPosition: {x: 26.8, y: 0.5, z: 63.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1341083333}
@@ -8376,6 +8376,7 @@ MonoBehaviour:
   prideArm_2: {fileID: 721451860}
   slothLeg_1: {fileID: 849445063}
   slothLeg_2: {fileID: 341108885}
+  lockedDoor_1: {fileID: 33781949}
 --- !u!195 &1552856555
 NavMeshAgent:
   m_ObjectHideFlags: 0
