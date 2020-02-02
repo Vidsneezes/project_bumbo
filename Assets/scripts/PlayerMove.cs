@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using UnityEngine.AI;
 
 public class PlayerMove : MonoBehaviour
 {
     public CharacterController characterController;
+    public NavMeshAgent navMesh;
     public float moveSpeed;
+    public NavMeshSurface navMeshSurface;
 
     public Vector3 velocity;
 
@@ -98,6 +101,7 @@ public class PlayerMove : MonoBehaviour
             velocity.x = moveHorizontal;
             velocity.z = foward;
 
+
             if (velocity.magnitude > 0)
             {
                 animator.SetInteger("rolling", 1);
@@ -174,23 +178,28 @@ public class PlayerMove : MonoBehaviour
             }
         }
 
+        navMesh.Move(velocity * Time.deltaTime * moveSpeed);
     }
 
     void CloseDialogue()
     {
         DialogueManager.instance.CloseDialogue();
         talking = false;
+        exclamationMark.SetActive(false);
+        detectedObjects.Clear();
     }
 
     public void GetHead()
     {
+        GameObject.Destroy(headNpc.gameObject);
         orbRenderer.enabled = false;
         headRenderer.gameObject.SetActive(true);
+        navMeshSurface.BuildNavMesh();
     }
 
     private void FixedUpdate()
     {
-        characterController.Move(velocity * Time.fixedDeltaTime * moveSpeed);
+        //characterController.Move(velocity * Time.fixedDeltaTime * moveSpeed);
     }
 
     private void LateUpdate()
@@ -218,6 +227,14 @@ public class PlayerMove : MonoBehaviour
             detectedObjects.Add(other.gameObject);
         }
 
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (!detectedObjects.Contains(other.gameObject) && other.CompareTag("event"))
+        {
+            detectedObjects.Add(other.gameObject);
+        }
     }
 
     private void OnTriggerExit(Collider other)
