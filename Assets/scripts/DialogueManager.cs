@@ -15,6 +15,11 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI currentWordLabel;
     public Image textBox;
 
+    public Image blubbleBox;
+    public Sprite canUse;
+    public Sprite idleuse;
+    public Sprite canTake;
+
 
     public GameObject dialogueUI;
     public TextMeshProUGUI message;
@@ -32,6 +37,8 @@ public class DialogueManager : MonoBehaviour
         {
             DialogueManager.instance = this;
         }
+        blubbleBox.sprite = idleuse;
+
     }
 
     private void Start()
@@ -77,6 +84,19 @@ public class DialogueManager : MonoBehaviour
 
     public void NextMessage()
     {
+
+        if(currentBlurber.blurbs[currentBlurb].hasSpecialWord)
+        {
+            blubbleBox.sprite = canTake;
+        }
+        else if(currentBlurber.blurbs[currentBlurb].hasBranch)
+        {
+            blubbleBox.sprite = canUse;
+        }
+        else
+        {
+            blubbleBox.sprite = idleuse;
+        }
 
         if (currentBlurber.blurbs[currentBlurb].isStateChanger)
         {

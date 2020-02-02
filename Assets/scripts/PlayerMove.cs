@@ -7,7 +7,6 @@ using UnityEngine.AI;
 
 public class PlayerMove : MonoBehaviour
 {
-    public CharacterController characterController;
     public NavMeshAgent navMesh;
     public float moveSpeed;
     public NavMeshSurface navMeshSurface;
@@ -97,7 +96,6 @@ public class PlayerMove : MonoBehaviour
         if(flyingAway)
         {
             timer += Time.deltaTime * 0.89f;
-            characterController.enabled = false;
 
             velocity.x = 0;
             velocity.z = 0;

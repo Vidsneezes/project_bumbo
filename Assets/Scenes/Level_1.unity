@@ -4706,7 +4706,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 844541320}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
@@ -6339,22 +6339,22 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 62ad31a7192f77144893bec3ae17cc2f,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.7071068
+      value: 0.028680645
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 62ad31a7192f77144893bec3ae17cc2f,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.706648
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 62ad31a7192f77144893bec3ae17cc2f,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: -0.7064014
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 62ad31a7192f77144893bec3ae17cc2f,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071067
+      value: -0.028690657
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 62ad31a7192f77144893bec3ae17cc2f,
         type: 3}
@@ -6364,12 +6364,12 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 62ad31a7192f77144893bec3ae17cc2f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -89.98
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 62ad31a7192f77144893bec3ae17cc2f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -184.65
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 62ad31a7192f77144893bec3ae17cc2f,
         type: 3}
@@ -8626,7 +8626,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8b2d8c55bcaa8540b2827f10bd8f8fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterController: {fileID: 0}
   navMesh: {fileID: 1552856555}
   moveSpeed: 5
   navMeshSurface: {fileID: 1615137144}
@@ -9005,6 +9004,10 @@ MonoBehaviour:
   hasCurrentWord: 0
   currentWordLabel: {fileID: 1495040939}
   textBox: {fileID: 606770249}
+  blubbleBox: {fileID: 1641605669}
+  canUse: {fileID: 21300000, guid: ea1a6df3a8432984db627ea9346dfbfb, type: 3}
+  idleuse: {fileID: 21300000, guid: 4911a1d64b5972944b4e901ce25c8ab6, type: 3}
+  canTake: {fileID: 21300000, guid: a98da4ff2c10d8c4dbe7e99de30c8e08, type: 3}
   dialogueUI: {fileID: 1034246984}
   message: {fileID: 33691347}
   currentBlurb: 0
@@ -9378,7 +9381,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.78, g: 0.78, b: 0.78, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
