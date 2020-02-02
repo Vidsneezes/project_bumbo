@@ -37,6 +37,8 @@ public class PlayerMove : MonoBehaviour
     public Npc prideNpc;
     public Npc slothNpc;
 
+    public SpriteRenderer finalImage;
+
     public GameObject prideArm_1;
     public GameObject prideArm_2;
 
@@ -86,6 +88,7 @@ public class PlayerMove : MonoBehaviour
         bodyOnlyRenderer.SetActive(false);
         rootBodyLegs.SetActive(false);
 
+        finalImage.gameObject.SetActive(false);
 
         elevatorUpProp = GameObject.FindGameObjectWithTag("elevatorUpProp");
         awayCamera = GameObject.FindGameObjectWithTag("awaycam").GetComponent<Camera>();
@@ -299,6 +302,7 @@ public class PlayerMove : MonoBehaviour
             flyingAway = true;
             awayCamera.depth = 1;
             timer = 0;
+            finalImage.gameObject.SetActive(true);
         }
 
         if(!detectedObjects.Contains(other.gameObject) && other.CompareTag("event"))

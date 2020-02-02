@@ -44,6 +44,19 @@ public class DialogueManager : MonoBehaviour
     private void Start()
     {
         RemoveCurrentWord();
+
+        if (!hasCurrentWord)
+        {
+            blubbleBox.color = Color.clear;
+            blubbleBox.sprite = idleuse;
+        }
+        else
+        {
+            blubbleBox.color = Color.white;
+
+            blubbleBox.sprite = canTake;
+        }
+
     }
 
     private void OnDestroy()
@@ -84,17 +97,42 @@ public class DialogueManager : MonoBehaviour
 
     public void NextMessage()
     {
-        if(currentBlurber.blurbs[currentBlurb].hasSpecialWord)
+        blubbleBox.color = Color.white;
+
+
+        if (currentBlurber.blurbs[currentBlurb].hasSpecialWord)
         {
             blubbleBox.sprite = canTake;
         }
-        else if(currentBlurber.blurbs[currentBlurb].hasBranch)
+        else if (currentBlurber.blurbs[currentBlurb].hasBranch)
         {
-            blubbleBox.sprite = canUse;
+            if (hasCurrentWord)
+            {
+                blubbleBox.color = Color.white;
+
+                blubbleBox.sprite = canUse;
+            }
+            else
+            {
+                blubbleBox.color = Color.clear;
+
+            }
         }
         else
         {
-            blubbleBox.sprite = idleuse;
+            if (!hasCurrentWord)
+            {
+                blubbleBox.color = Color.clear;
+
+                blubbleBox.sprite = canUse;
+            }
+            else
+            {
+                blubbleBox.color = Color.white;
+                
+                blubbleBox.sprite = canTake;
+
+            }
         }
 
         if (currentBlurber.blurbs[currentBlurb].isStateChanger)
@@ -145,9 +183,16 @@ public class DialogueManager : MonoBehaviour
     public void CloseDialogue()
     {
 
-        if(hasCurrentWord)
+        if(!hasCurrentWord)
         {
+            blubbleBox.color = Color.clear;
             blubbleBox.sprite = idleuse;
+        }
+        else
+        {
+            blubbleBox.color = Color.white;
+
+            blubbleBox.sprite = canTake;
         }
 
         dialogueUI.gameObject.SetActive(false);
