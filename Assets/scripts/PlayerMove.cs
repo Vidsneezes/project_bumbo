@@ -156,7 +156,7 @@ public class PlayerMove : MonoBehaviour
                 }
             }
 
-            if(wordTakeButton)
+            if(wordTakeButton && DialogueManager.instance.hasCurrentWord == false)
             {
 
                 DialogueManager.instance.AddCurrentWord();

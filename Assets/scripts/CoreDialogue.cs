@@ -24,9 +24,10 @@ public class CoreDialogue : MonoBehaviour
         allNpcs.Add("pride_1", 0);
         allNpcs.Add("envy_1", 0);
         allNpcs.Add("wrath_1", 0);
-
-
-
+        allNpcs.Add("lust_1", 0);
+        allNpcs.Add("greed_1", 0);
+        allNpcs.Add("gluttony_1", 0);
+        allNpcs.Add("sloth_1", 0);
 
     }
 
@@ -59,6 +60,22 @@ public class CoreDialogue : MonoBehaviour
         _b.Add("wrath_1", Wrath_1());
         _b.Add("wrath_2", Wrath_2());
         _b.Add("wrath_3", Wrath_3());
+
+        _b.Add("lust_1", Lust_1());
+        _b.Add("lust_2", Lust_2());
+        _b.Add("lust_3", Lust_3());
+
+        _b.Add("greed_1", Greed_1());
+        _b.Add("greed_2", Greed_2());
+        _b.Add("greed_3", Greed_3());
+
+        _b.Add("gluttony_1", Gluttony_1());
+        _b.Add("gluttony_2", Gluttony_2());
+        _b.Add("gluttony_3", Gluttony_3());
+
+        _b.Add("sloth_1", Sloth_1());
+        _b.Add("sloth_2", Sloth_2());
+        _b.Add("sloth_3", Sloth_3());
 
 
         return _b;

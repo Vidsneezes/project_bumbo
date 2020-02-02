@@ -115,6 +115,7 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
+            RemoveCurrentWord();
             LoadDialogue("what");
         }
         return false;
