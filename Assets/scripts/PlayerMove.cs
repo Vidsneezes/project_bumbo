@@ -29,6 +29,10 @@ public class PlayerMove : MonoBehaviour
 
     public MeshRenderer headRenderer;
 
+    public GameObject bodyOnlyRenderer;
+
+    public GameObject rootBodyLegs;
+
     public Npc headNpc;
     public Npc prideNpc;
     public Npc slothNpc;
@@ -41,6 +45,8 @@ public class PlayerMove : MonoBehaviour
 
     public GameObject lockedDoor_1;
     public GameObject lockedDoor_2;
+
+    private string currentWalkAnimation;
 
 
     const float flyawayLimit = 10.6f;
@@ -75,6 +81,12 @@ public class PlayerMove : MonoBehaviour
         flyingAway = false;
         talking = false;
         exclamationMark.SetActive(false);
+
+
+        bodyOnlyRenderer.SetActive(false);
+        rootBodyLegs.SetActive(false);
+
+
         elevatorUpProp = GameObject.FindGameObjectWithTag("elevatorUpProp");
         awayCamera = GameObject.FindGameObjectWithTag("awaycam").GetComponent<Camera>();
 
@@ -82,6 +94,8 @@ public class PlayerMove : MonoBehaviour
         hasLegs = false;
 
         openDoor_1 = false;
+
+        currentWalkAnimation = "rolling";
     }
 
     // Update is called once per frame
@@ -104,7 +118,7 @@ public class PlayerMove : MonoBehaviour
                 transform.SetParent(elevatorUpProp.transform);
             }
             transform.localPosition = Vector3.up * 0.5f;
-            animator.SetInteger("rolling", -1);
+            animator.SetInteger(currentWalkAnimation, -1);
 
             Vector3 moveUp = elevatorUpProp.transform.position;
             moveUp.y += 4 * Time.deltaTime;
@@ -138,11 +152,11 @@ public class PlayerMove : MonoBehaviour
 
             if (velocity.magnitude > 0)
             {
-                animator.SetInteger("rolling", 1);
+                animator.SetInteger(currentWalkAnimation, 1);
             }
             else
             {
-                animator.SetInteger("rolling", -1);
+                animator.SetInteger(currentWalkAnimation, -1);
             }
 
             if (detectedObjects.Count > 0)
@@ -175,7 +189,7 @@ public class PlayerMove : MonoBehaviour
             velocity.x = 0;
             velocity.z = 0;
 
-            animator.SetInteger("rolling", -1);
+            animator.SetInteger(currentWalkAnimation, -1);
             if (talkButton)
             {
                 if (DialogueManager.instance.AtEndOfBlurb())
@@ -230,15 +244,27 @@ public class PlayerMove : MonoBehaviour
         detectedObjects.Clear();
     }
 
+    [ContextMenu("Get Arms")]
     public void GetArms()
     {
+        headRenderer.gameObject.SetActive(false);
+        bodyOnlyRenderer.gameObject.SetActive(true);
+        currentWalkAnimation = "jumping";
+        animator.SetInteger("rolling", -1);
+        animator.SetInteger("jumping", -1);
         prideArm_1.gameObject.SetActive(false);
         prideArm_2.gameObject.SetActive(false);
         hasArms = true;
     }
 
+    [ContextMenu("Get Legs")]
     public void GetLegs()
     {
+        bodyOnlyRenderer.gameObject.SetActive(false);
+        animator.SetInteger("rolling", -1);
+        animator.SetInteger("jumping", -1);
+        currentWalkAnimation = "jumping";
+        rootBodyLegs.gameObject.SetActive(true);
         slothLeg_1.gameObject.SetActive(false);
         slothLeg_2.gameObject.SetActive(false);
         hasLegs = true;
