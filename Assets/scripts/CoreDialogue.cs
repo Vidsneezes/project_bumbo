@@ -23,6 +23,8 @@ public class CoreDialogue : MonoBehaviour
         allNpcs.Add("head_1", 0);
         allNpcs.Add("pride_1", 0);
         allNpcs.Add("envy_1", 0);
+        allNpcs.Add("wrath_1", 0);
+
 
 
 
@@ -53,6 +55,10 @@ public class CoreDialogue : MonoBehaviour
 
         _b.Add("envy_1", Envy_1());
         _b.Add("envy_2", Envy_2());
+
+        _b.Add("wrath_1", Wrath_1());
+        _b.Add("wrath_2", Wrath_2());
+        _b.Add("wrath_3", Wrath_3());
 
 
         return _b;
@@ -222,7 +228,7 @@ public class CoreDialogue : MonoBehaviour
         m.blurbs.Add(TextBoxBlurb.AddSimple("I hate that I'm trapped here with those weirdoes!"));
         m.blurbs.Add(TextBoxBlurb.AddSimple("I hate them! I hate them! I hate them!"));
         m.blurbs.Add(TextBoxBlurb.AddSimple("Wow, I really needed to vent."));
-        m.blurbs.Add(TextBoxBlurb.AddSpecialBlurb("<color=yellow>Thank you</color>, you know?", "Thank you"));
+        m.blurbs.Add(TextBoxBlurb.AddSpecialBlurb("<color=yellow>Thank you</color>.", "Thank you"));
         return m;
     }
 
