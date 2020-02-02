@@ -41,12 +41,14 @@ public class PlayerMove : MonoBehaviour
     private Npc currentNpc;
 
     private bool talking;
+    private bool rebuildNavMesh;
     private bool flyingAway;
     float timer = 0;
 
     // Start is called before the first frame update
     void Start()
     {
+        rebuildNavMesh = false;
         flyingAway = false;
         talking = false;
         exclamationMark.SetActive(false);
@@ -57,6 +59,14 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(rebuildNavMesh)
+        {
+            //navMeshSurface.BuildNavMesh();
+            rebuildNavMesh = false;
+            return;
+        }
+
 
         if(flyingAway)
         {
@@ -191,10 +201,9 @@ public class PlayerMove : MonoBehaviour
 
     public void GetHead()
     {
-        GameObject.Destroy(headNpc.gameObject);
         orbRenderer.enabled = false;
         headRenderer.gameObject.SetActive(true);
-        navMeshSurface.BuildNavMesh();
+        rebuildNavMesh = true;
     }
 
     private void FixedUpdate()
